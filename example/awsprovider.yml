@@ -1,0 +1,11 @@
+apiVersion: aws.crossplane.io/v1alpha3
+kind: Provider
+metadata:
+  name: aws-provider
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system  # Namespace where Crossplane is installed
+      name: aws-creds-secret  # Replace with the name of your AWS secret containing credentials
+      key: credentials

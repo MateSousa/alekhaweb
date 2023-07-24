@@ -1,0 +1,15 @@
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Function
+metadata:
+  name: crossplane-function-testing-two-haves
+  namespace: crossplane
+  labels:
+    function: crossplane-function-testing-two-haves
+spec:
+  writeConnectionSecretToRef:
+    name: crossplane-function-testing-two-haves
+    namespace: crossplane
+  forProvider:
+    region: us-west-2
+    s3Bucket: crossplane-bucket-testing-two-haves
+    s3Key: function.zip

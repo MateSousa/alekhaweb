@@ -4,7 +4,7 @@ metadata:
   name: crossplane-bucket-testing
   namespace: crossplane
   labels:
-    bucket: crossplane-bucket-testing
+    bucket: crossplane-bucket-testing-two-haves
 spec:
   forProvider:
     region: us-west-2

@@ -2,8 +2,9 @@ apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
   name: crossplane-bucket-testing
+  namespace: crossplane
   labels:
-    docs.crossplane.io/example: provider-aws
+    bucket: crossplane-bucket-testing
 spec:
   forProvider:
     region: us-west-2

@@ -1,7 +1,7 @@
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  name: crossplane-bucket-testing
+  name: crossplane-bucket-testing-two-haves
   namespace: crossplane
   labels:
     bucket: crossplane-bucket-testing-two-haves

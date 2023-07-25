@@ -111,10 +111,7 @@ spec:
         "Statement": [
           {
             "Effect": "Allow",
-            "Principal": {
-              "Service": "apigateway.amazonaws.com"
-            },
-            "Action": "execute-api:Invoke",
+            "Action": "lambda:*",
             "Resource": "arn:aws:execute-api:us-west-2:741670345220:d38x0c4ez2/*/*/crossplane-function-testing-two-haves"
           }
         ]

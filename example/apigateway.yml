@@ -46,7 +46,7 @@ spec:
     region: us-west-2
     connectionType: INTERNET
     httpMethod: GET
-    integrationHttpMethod: GET
+    integrationHttpMethod: POST
     resourceIdRef:
       name: example-resource
     restApiIdRef:

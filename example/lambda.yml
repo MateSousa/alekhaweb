@@ -50,20 +50,20 @@ spec:
     runtime: java11
     handler: com.example.HelloWorldHandler::handleRequest 
 ---
-apiVersion: lambda.aws.upbound.io/v1beta1
-kind: Permission
-metadata:
-  name: crossplane-permission-testing-two-haves
-  namespace: crossplane
-  labels:
-    permission: crossplane-permission-testing-two-haves
-spec:
-  forProvider:
-    region: us-west-2
-    action: lambda:InvokeFunction
-    functionName: crossplane-function-testing-two-haves
-    functionRef:
-      name: crossplane-function-testing-two-haves
-    principal: apigateway.amazonaws.com
-    statementId: permission-statementid
-    statementIdPrefix: permission-
+# apiVersion: lambda.aws.upbound.io/v1beta1
+# kind: Permission
+# metadata:
+#   name: crossplane-permission-testing-two-haves
+#   namespace: crossplane
+#   labels:
+#     permission: crossplane-permission-testing-two-haves
+# spec:
+#   forProvider:
+#     region: us-west-2
+#     action: lambda:InvokeFunction
+#     functionName: crossplane-function-testing-two-haves
+#     functionRef:
+#       name: crossplane-function-testing-two-haves
+#     principal: apigateway.amazonaws.com
+#     statementId: permission-statementid
+#     statementIdPrefix: permission-

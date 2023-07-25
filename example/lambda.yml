@@ -49,3 +49,18 @@ spec:
       name: crossplane-role-testing-two-haves
     runtime: java11
     handler: com.example.HelloWorldHandler::handleRequest 
+---
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Permission
+metadata:
+  name: crossplane-permission-testing-two-haves
+  namespace: crossplane
+  labels:
+    permission: crossplane-permission-testing-two-haves
+spec:
+  forProvider:
+    region: us-west-2
+    action: lambda:InvokeFunction
+    functionRef:
+      name: crossplane-function-testing-two-haves
+    principal: api-gateway.amazonaws.com

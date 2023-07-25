@@ -93,3 +93,24 @@ spec:
     restApiIdRef:
       name: example-rest-api
     stageName: example-deployment
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: RestAPIPolicy
+metadata:
+  name: example-rest-api-policy
+spec:
+  forProvider:
+    region: us-west-2
+    restApiIdRef:
+      name: example-rest-api
+    policy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": "execute-api:Invoke",
+            "Effect": "Allow",
+            "Resource": "execute-api:/*"
+          }
+        ]
+      }

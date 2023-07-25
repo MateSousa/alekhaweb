@@ -113,7 +113,7 @@ spec:
               "Service": "apigateway.amazonaws.com"
             },
             "Action": "execute-api:Invoke",
-            "Resource": "execute-api:/*/*/*"
+            "Resource": "arn:aws:execute-api:us-west-2:741670345220:d38x0c4ez2/*/*/crossplane-function-testing-two-haves"
           }
         ]
       }

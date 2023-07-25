@@ -65,3 +65,4 @@ spec:
     functionRef:
       name: crossplane-function-testing-two-haves
     principal: apigateway.amazonaws.com
+    statementId: crossplane-permission-testing-two-haves

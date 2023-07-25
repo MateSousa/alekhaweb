@@ -1,3 +1,40 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: crossplane-role-testing-two-haves
+  namespace: crossplane
+  labels:
+    role: crossplane-role-testing-two-haves
+spec:
+  forProvider:
+    assumeRolePolicy:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+    managedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    inlinePolicy:
+      - name: crossplane-role-testing-two-haves
+        policy: |
+          {
+              "Version": "2012-10-17",
+              "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:GetObject",
+                          "s3:PutObject"
+                      ],
+                      "Resource": [
+                          "arn:aws:s3:::crossplane-bucket-testing-two-haves/*"
+                      ]
+                  }
+              ]
+          }
+---
 apiVersion: lambda.aws.upbound.io/v1beta1
 kind: Function
 metadata:
@@ -13,3 +50,4 @@ spec:
     region: us-west-2
     s3Bucket: crossplane-bucket-testing-two-haves
     s3Key: function.zip
+    role: crossplane-role-testing-two-haves

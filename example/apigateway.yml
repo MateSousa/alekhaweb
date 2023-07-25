@@ -108,11 +108,12 @@ spec:
         "Version": "2012-10-17",
         "Statement": [
           {
-            "Action": "execute-api:Invoke",
             "Effect": "Allow",
-            "Resource": "execute-api:crossplane-function-testing-two-haves"
-
-
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "execute-api:Invoke",
+            "Resource": "execute-api:/*/*/*"
           }
         ]
       }

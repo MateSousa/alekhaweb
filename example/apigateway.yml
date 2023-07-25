@@ -111,8 +111,8 @@ spec:
         "Statement": [
           {
             "Effect": "Allow",
-            "Action": "lambda:*",
-            "Resource": "arn:aws:execute-api:us-west-2:741670345220:d38x0c4ez2/*/*/crossplane-function-testing-two-haves"
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-west-2:741670345220:function:crossplane-function-testing-two-haves"
           }
         ]
       }

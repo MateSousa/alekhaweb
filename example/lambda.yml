@@ -30,6 +30,41 @@ spec:
         ]
       }
 ---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Policy
+metadata:
+  name: crossplane-policy-testing-two-haves
+  namespace: crossplane
+  labels:
+    policy: crossplane-policy-testing-two-haves
+spec:
+  forProvider:
+    policy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": "lambda:InvokeFunction",
+            "Resource": "*",
+          }
+        ]  
+      }
+---
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: crossplane-role-policy-attachment-testing-two-haves
+  namespace: crossplane
+  labels:
+    role-policy-attachment: crossplane-role-policy-attachment-testing-two-haves
+spec:
+  forProvider:
+    roleRef:
+      name: crossplane-role-testing-two-haves
+    policyArnRef:
+      name: crossplane-policy-testing-two-haves
+---
 apiVersion: lambda.aws.upbound.io/v1beta1
 kind: Function
 metadata:
@@ -49,21 +84,3 @@ spec:
       name: crossplane-role-testing-two-haves
     runtime: java11
     handler: com.example.HelloWorldHandler::handleRequest 
----
-# apiVersion: lambda.aws.upbound.io/v1beta1
-# kind: Permission
-# metadata:
-#   name: crossplane-permission-testing-two-haves
-#   namespace: crossplane
-#   labels:
-#     permission: crossplane-permission-testing-two-haves
-# spec:
-#   forProvider:
-#     region: us-west-2
-#     action: lambda:InvokeFunction
-#     functionName: crossplane-function-testing-two-haves
-#     functionRef:
-#       name: crossplane-function-testing-two-haves
-#     principal: apigateway.amazonaws.com
-#     statementId: permission-statementid
-#     statementIdPrefix: permission-

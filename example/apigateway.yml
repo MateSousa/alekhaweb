@@ -46,7 +46,6 @@ spec:
     region: us-west-2
     connectionType: INTERNET
     httpMethod: GET
-    credentials: "arn:aws:execute-api:us-west-2:741670345220:d38x0c4ez2/*/*/crossplane-function-testing-two-haves"
     integrationHttpMethod: GET
     resourceIdRef:
       name: example-resource

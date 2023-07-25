@@ -3,86 +3,93 @@ kind: RestAPI
 metadata:
   name: example-rest-api
 spec:
-  region: us-west-2
-  description: "Example RestAPI"
-  endpointConfiguration:
-    types:
-      - EDGE
-  name: example-rest-api
+  forProvider:
+    region: us-west-2
+    description: "Example RestAPI"
+    endpointConfiguration:
+      types:
+        - EDGE
+    name: example-rest-api
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Resource
 metadata:
   name: example-resource
 spec:
-  region: us-west-2
-  parentIdRef:
-    name: example-rest-api
-  restApiIdRef:
-    name: example-rest-api
-  pathPart: lambda
+  forProvider:
+    region: us-west-2
+    parentIdRef:
+      name: example-rest-api
+    restApiIdRef:
+      name: example-rest-api
+    pathPart: lambda
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Method
 metadata:
   name: example-method
 spec:
-  region: us-west-2
-  apiKeyRequired: false
-  authorization: NONE
-  httpMethod: GET
-  operationName: lambda
-  resourceIdRef:
-    name: example-resource
-  restApiIdRef:
-    name: example-rest-api
+  forProvider:
+    region: us-west-2
+    apiKeyRequired: false
+    authorization: NONE
+    httpMethod: GET
+    operationName: lambda
+    resourceIdRef:
+      name: example-resource
+    restApiIdRef:
+      name: example-rest-api
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Integration
 metadata:
   name: example-integration
 spec:
-  region: us-west-2
-  connectionType: INTERNET
-  integrationHttpMethod: GET
-  resourceIdRef:
-    name: example-resource
-  restApiIdRef:
-    name: example-rest-api
-  type: AWS_PROXY
-  uriRef:
-    name: crossplane-function-testing-two-haves
+  forProvider:
+    region: us-west-2
+    connectionType: INTERNET
+    integrationHttpMethod: GET
+    resourceIdRef:
+      name: example-resource
+    restApiIdRef:
+      name: example-rest-api
+    type: AWS_PROXY
+    uriRef:
+      name: crossplane-function-testing-two-haves
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Model
 metadata:
   name: example-model
 spec:
-  region: us-west-2
-  contentType: application/json
-  description: "Example Model"
-  name: example-model
-  restApiIdRef:
-    name: example-rest-api
-  schema: |
-    {}
+  forProvider:
+    region: us-west-2
+    contentType: application/json
+    description: "Example Model"
+    name: example-model
+    restApiIdRef:
+      name: example-rest-api
+    schema: |
+      {}
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Stage
 metadata:
   name: example-stage
 spec:
-  region: us-west-2
-  restApiIdRef:
-    name: example-rest-api
-  stageName: example-stage
+  forProvider:
+    region: us-west-2
+    restApiIdRef:
+      name: example-rest-api
+    stageName: example-stage
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Deployment
 metadata:
   name: example-deployment
 spec:
-  region: us-west-2
-  restApiIdRef:
-    name: example-rest-api
-  stageName: example-deployment
+  forProvider:
+    region: us-west-2
+    restApiIdRef:
+      name: example-rest-api
+    stageName: example-deployment

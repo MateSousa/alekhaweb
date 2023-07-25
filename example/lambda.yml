@@ -97,4 +97,5 @@ spec:
     functionNameRef:
       name: crossplane-function-testing-two-haves
     principal: apigateway.amazonaws.com
-    sourceArn: arn:aws:execute-api:us-west-2:741670345220:ip8wmfpkze/*/GET/lambda
+    sourceArnRef:
+      name: crossplane-rest-api-testing-two-haves

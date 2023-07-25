@@ -16,16 +16,14 @@ spec:
             "Principal": {
               "Service": "lambda.amazonaws.com"
             },
-            "Effect": "Allow",
-            "Sid": ""
+            "Effect": "Allow"
           },
           {
             "Action": "sts:AssumeRole",
             "Principal": {
               "Service": "s3.amazonaws.com"
             },
-            "Effect": "Allow",
-            "Sid": ""
+            "Effect": "Allow"
           }
         ]
       }
@@ -46,7 +44,7 @@ spec:
           {
             "Effect": "Allow",
             "Action": "lambda:InvokeFunction",
-            "Resource": "*",
+            "Resource": "*"
           }
         ]  
       }

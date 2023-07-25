@@ -6,9 +6,6 @@ spec:
   forProvider:
     region: us-west-2
     description: "Example RestAPI"
-    endpointConfiguration:
-      types:
-        - EDGE
     name: example-rest-api
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1

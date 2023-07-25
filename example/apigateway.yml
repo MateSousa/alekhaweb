@@ -45,6 +45,7 @@ spec:
   forProvider:
     region: us-west-2
     connectionType: INTERNET
+    httpMethod: GET
     integrationHttpMethod: GET
     resourceIdRef:
       name: example-resource
@@ -63,7 +64,7 @@ spec:
     region: us-west-2
     contentType: application/json
     description: "Example Model"
-    name: example-model
+    name: examplemodel
     restApiIdRef:
       name: example-rest-api
     schema: |
@@ -79,6 +80,8 @@ spec:
     restApiIdRef:
       name: example-rest-api
     stageName: example-stage
+    deploymentIdRef:
+      name: example-deployment
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Deployment

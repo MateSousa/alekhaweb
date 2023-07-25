@@ -48,4 +48,4 @@ spec:
     roleRef:
       name: crossplane-role-testing-two-haves
     runtime: java11
-    handler: com.example.LambdaHandler::handleRequest    
+    handler: com.example.HelloWorldHandler::handleRequest 

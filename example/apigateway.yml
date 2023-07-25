@@ -54,6 +54,8 @@ spec:
     type: AWS_PROXY
     uriRef:
       name: crossplane-function-testing-two-haves
+      policy:
+        resolution: "Required"
 ---
 apiVersion: apigateway.aws.upbound.io/v1beta1
 kind: Model

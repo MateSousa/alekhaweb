@@ -31,7 +31,7 @@ spec:
     apiKeyRequired: false
     authorization: NONE
     httpMethod: GET
-    operationName: lambda
+    operationName: crossplane-function-testing-two-haves
     resourceIdRef:
       name: example-resource
     restApiIdRef:
@@ -110,7 +110,7 @@ spec:
           {
             "Action": "execute-api:Invoke",
             "Effect": "Allow",
-            "Resource": "execute-api:/*/*/crossplane-function-testing-two-haves"
+            "Resource": "execute-api:/*"
           }
         ]
       }

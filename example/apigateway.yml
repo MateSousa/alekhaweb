@@ -112,6 +112,7 @@ spec:
           {
             "Effect": "Allow",
             "Action": "lambda:InvokeFunction",
+            "Principal": "*",
             "Resource": "arn:aws:lambda:us-west-2:741670345220:function:crossplane-function-testing-two-haves"
           }
         ]

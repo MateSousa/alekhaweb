@@ -110,7 +110,7 @@ spec:
           {
             "Action": "execute-api:Invoke",
             "Effect": "Allow",
-            "Resource": "execute-api:/*/GET/crossplane-function-testing-two-haves"
+            "Resource": "execute-api:/*/*/*"
           }
         ]
       }

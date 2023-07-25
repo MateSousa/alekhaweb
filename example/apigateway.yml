@@ -15,6 +15,7 @@ kind: Resource
 metadata:
   name: example-resource
 spec:
+  region: us-west-2
   parentIdRef:
     name: example-rest-api
   restApiIdRef:
@@ -26,6 +27,7 @@ kind: Method
 metadata:
   name: example-method
 spec:
+  region: us-west-2
   apiKeyRequired: false
   authorization: NONE
   httpMethod: GET

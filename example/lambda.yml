@@ -51,3 +51,5 @@ spec:
     s3Bucket: crossplane-bucket-testing-two-haves
     s3Key: function.zip
     role: crossplane-role-testing-two-haves
+    runtime: java17
+    handler: com.example.LambdaHandler::handleRequest    

@@ -31,6 +31,10 @@ spec:
                       description: APIGateway is the API Gateway configuration for
                         the serverless app.
                       properties:
+                        region: 
+                          description: Region is the region of the API Gateway.
+                          type: string
+                          default: "us-east-1"
                         name:
                           description: Name is the name of the API Gateway.
                           type: string
@@ -71,6 +75,10 @@ spec:
                       description: Lambda is the Lambda configuration for the serverless
                         app.
                       properties:
+                        region: 
+                          description: Region is the region of the Lambda.
+                          type: string
+                          default: "us-east-1"
                         name:
                           description: Name is the name of the Lambda.
                           type: string
@@ -116,6 +124,7 @@ spec:
                           description: LocationConstraint is the location constraint
                             of the S3.
                           type: string
+                          default: "us-east-1"
                         name:
                           description: Name is the name of the S3.
                           type: string

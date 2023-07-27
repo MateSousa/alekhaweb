@@ -1,12 +1,15 @@
-apiVersion: s3.aws.upbound.io/v1beta1
+apiVersion: s3.aws.crossplane.io/v1beta1
 kind: Bucket
 metadata:
-  name: crossplane-bucket-testing-two-haves
+  name: crossplane-test-yl-matheus
   namespace: crossplane
-  labels:
-    bucket: crossplane-bucket-testing-two-haves
 spec:
   forProvider:
-    region: us-west-2
+    acl: private
+    locationConstraint: us-west-2
+    versioningConfiguration:
+      status: Enabled
   providerConfigRef:
-    name: default
+    name: crossplane-provider-config
+  providerRef:
+    name: crossplane-provider-config

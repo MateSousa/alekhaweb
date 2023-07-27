@@ -9,7 +9,3 @@ spec:
     locationConstraint: us-west-2
     versioningConfiguration:
       status: Enabled
-  providerConfigRef:
-    name: upbound-provider-aws
-  providerRef:
-    name: upbound-provider-aws

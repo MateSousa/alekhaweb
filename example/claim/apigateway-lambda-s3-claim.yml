@@ -1,7 +1,7 @@
 apiVersion: awsblueprints.io/v1alpha1
 kind: ServerlessApp
 metadata:
-  name: apigateway-lambda-s3-claim
+  name: apigatewaylambdas3claim
 spec:
   resourceConfig:
     apiGateway:
@@ -50,6 +50,7 @@ spec:
     apiVersion: awsblueprints.io/v1alpha1
     kind: ServerlessApp
     name: apigateway-lambda-s3
+    namespace: crossplane
   patches:
     - type: FromCompositeFieldPath
       fromFieldPath: spec.resourceConfig

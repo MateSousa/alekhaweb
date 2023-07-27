@@ -72,4 +72,57 @@ spec:
         spec:
           compositionSelector:
             matchLabels:
-              serveless.awsblueprints
+              serveless.awsblueprints.io: apigateway-lambda-s3
+          claimRef:
+            apiVersion: awsblueprints.io/v1alpha1
+            kind: ServerlessApp
+            name: apigateway-lambda-s3
+            namespace: crossplane
+          patches:
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig
+              toFieldPath: spec.resourceConfig
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig.s3
+              toFieldPath: spec.resourceConfig
+    - name: lambda
+      base:
+        apiVersion: lambda.aws.crossplane.io/v1alpha1
+        kind: Function
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+          claimRef:
+            apiVersion: awsblueprints.io/v1alpha1
+            kind: ServerlessApp
+            name: apigateway-lambda-s3
+            namespace: crossplane
+          patches:
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig
+              toFieldPath: spec.resourceConfig
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig.lambda
+              toFieldPath: spec.resourceConfig
+    - name: apigateway
+      base:
+        apiVersion: apigateway.aws.crossplane.io/v1alpha1
+        kind: RestApi
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+          claimRef:
+            apiVersion: awsblueprints.io/v1alpha1
+            kind: ServerlessApp
+            name: apigateway-lambda-s3
+            namespace: crossplane
+          patches:
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig
+              toFieldPath: spec.resourceConfig
+            - type: FromCompositeFieldPath
+              fromFieldPath: spec.resourceConfig.apiGateway
+              toFieldPath: spec.resourceConfig
+      

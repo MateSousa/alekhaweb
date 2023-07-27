@@ -1,0 +1,94 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xapigatewaylambdas3.awsblueprints.io
+  labels:
+    awsblueprints.io/provider: aws
+    serveless.awsblueprints.io: apigateway-lambda-s3
+spec:
+  compositeTypeRef:
+    apiVersion: awsblueprints.io/v1alpha1
+    kind: XServerlessApp
+  patchSets:
+    - name: common-fields-composition
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig
+          toFieldPath: spec.resourceConfig
+    - name: common-api-gateway
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.apiGateway
+          toFieldPath: spec.resourceConfig.apiGateway
+    - name: common-lambda
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.lambda
+          toFieldPath: spec.resourceConfig.lambda
+    - name: common-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.s3
+          toFieldPath: spec.resourceConfig.s3
+  resources:
+    - name: bucket
+      base:
+        apiVersion: s3.aws.crossplane.io/v1beta1
+        kind: Bucket
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.s3
+          toFieldPath: spec
+    - name: lambda
+      base:
+        apiVersion: lambda.aws.crossplane.io/v1beta1
+        kind: Function
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.lambda
+          toFieldPath: spec
+    - name: api-gateway
+      base:
+        apiVersion: apigateway.aws.upbound.io/v1beta1
+        kind: RestAPI
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.apiGateway
+          toFieldPath: spec
+    - name: api-gateway-resource
+      base:
+        apiVersion: apigateway.aws.upbound.io/v1beta1
+        kind: Resource
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.apiGateway.resource
+          toFieldPath: spec
+    - name: api-gateway-method
+      base:
+        apiVersion: apigateway.aws.upbound.io/v1beta1
+        kind: Method
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints.io: apigateway-lambda-s3
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.resourceConfig.apiGateway.method
+          toFieldPath: spec
+      

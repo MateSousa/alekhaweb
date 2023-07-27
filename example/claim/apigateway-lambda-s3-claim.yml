@@ -1,0 +1,74 @@
+apiVersion: awsblueprints.io/v1alpha1
+kind: XServerlessApp
+metadata:
+  name: apigateway-lambda-s3-claim
+spec:
+  resourceConfig:
+    apiGateway:
+      name: apigateway-lambda-s3-claim
+      description: "API Gateway for Lambda"
+      endpointConfiguration:
+        types:
+          - REGIONAL
+      routes:
+        - path: /hello
+          method: GET
+          integration:
+            type: AWS_PROXY
+            uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambda.arn}/invocations
+    lambda:
+      name: apigateway-lambda-s3-claim
+      description: "Lambda for API Gateway"
+      runtime: nodejs12.x
+      handler: index.handler
+      code:
+        s3Bucket: !Ref bucket
+        s3Key: !Ref key
+      role: !GetAtt role.arn
+    s3:
+      name: apigateway-lambda-s3-claim
+      bucketName: apigateway-lambda-s3-claim
+      corsConfiguration:
+        corsRules:
+          - allowedOrigins:
+              - "*"
+            allowedMethods:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - HEAD
+            allowedHeaders:
+              - "*"
+            maxAge: 3000
+            exposeHeaders:
+              - "*"
+  compositionSelector:
+    matchLabels:
+      serveless.awsblueprints.io: apigateway-lambda-s3
+  claimRef:
+    apiVersion: awsblueprints.io/v1alpha1
+    kind: XServerlessApp
+    name: apigateway-lambda-s3
+  patches:
+    - type: FromCompositeFieldPath
+      fromFieldPath: spec.resourceConfig
+      toFieldPath: spec.resourceConfig
+    - type: FromCompositeFieldPath
+      fromFieldPath: spec.resourceConfig.apiGateway
+      toFieldPath: spec.resourceConfig.apiGateway
+    - type: FromCompositeFieldPath
+      fromFieldPath: spec.resourceConfig.lambda
+      toFieldPath: spec.resourceConfig.lambda
+    - type: FromCompositeFieldPath
+      fromFieldPath: spec.resourceConfig.s3
+      toFieldPath: spec.resourceConfig.s3
+  resources:
+    - name: bucket
+      base:
+        apiVersion: s3.aws.crossplane.io/v1beta1
+        kind: Bucket
+        spec:
+          compositionSelector:
+            matchLabels:
+              serveless.awsblueprints

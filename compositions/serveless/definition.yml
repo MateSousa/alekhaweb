@@ -1,0 +1,163 @@
+# This is the definition of the composition resource definition for a serveless app using API Gateway, Lambda, and S3.(we need to declare the composition resource definition for the serveless app because for invoke lambda func, we need to declare a policy to allow API Gateway to invoke lambda func)
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xserverlessapp.awsblueprints.io
+spec:
+  group: awsblueprints.io
+  names:
+    kind: XServerlessApp
+    plural: xserverlessapp
+  claimNames:
+    kind: ServerlessApp
+    plural: serverlessapps
+  defaultCompositionRef:
+    name: xapigatewaylambdas3.awsblueprints.io
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              properties:
+                resourceConfig:
+                  description: ResourceConfig is the resource configuration for the
+                    serverless app.
+                  properties:
+                    apiGateway:
+                      description: APIGateway is the API Gateway configuration for
+                        the serverless app.
+                      properties:
+                        name:
+                          description: Name is the name of the API Gateway.
+                          type: string
+                        description:
+                          description: Description is the description of the API Gateway.
+                          type: string
+                        stageName:
+                          description: StageName is the stage name of the API Gateway.
+                          type: string
+                        deploymentName:
+                          description: DeploymentName is the deployment name of the
+                            API Gateway.
+                          type: string
+                        restApiPolicy:
+                          description: RestAPIPolicy is the policy of the API Gateway.
+                          type: string
+                        models:
+                          description: Models is the models of the API Gateway.
+                          type: array
+                          items:
+                            description: Model is the model of the API Gateway.
+                            properties:
+                              name:
+                                description: Name is the name of the model.
+                                type: string
+                              contentType:
+                                description: ContentType is the content type of the
+                                  model.
+                                type: string
+                              description:
+                                description: Description is the description of the
+                                  model.
+                                type: string
+                              schema:
+                                description: Schema is the schema of the model.
+                                type: string
+                    lambda:
+                      description: Lambda is the Lambda configuration for the serverless
+                        app.
+                      properties:
+                        name:
+                          description: Name is the name of the Lambda.
+                          type: string
+                        description:
+                          description: Description is the description of the Lambda.
+                          type: string
+                        handler:
+                          description: Handler is the handler of the Lambda.
+                          type: string
+                        runtime:
+                          description: Runtime is the runtime of the Lambda.
+                          type: string
+                        memorySize:
+                          description: MemorySize is the memory size of the Lambda.
+                          type: integer
+                        timeout:
+                          description: Timeout is the timeout of the Lambda.
+                          type: integer
+                        envVariables:
+                          description: EnvVariables is the environment variables of
+                            the Lambda.
+                          type: object
+                          additionalProperties:
+                            description: EnvVariable is the environment variable of
+                              the Lambda.
+                            type: string
+                        role:
+                          description: Role is the role of the Lambda.
+                          type: string
+                        sourceCode:
+                          description: SourceCode is the source code of the Lambda.
+                          type: string
+                        sourceCodeS3Bucket:
+                          description: SourceCodeS3Bucket
+                          type: string
+                        sourceCodeS3Key:
+                          description: SourceCodeS3Key
+                          type: string
+                    s3:
+                      description: S3 is the S3 configuration for the serverless app.
+                      properties:
+                        name:
+                          description: Name is the name of the S3.
+                          type: string
+                        description:
+                          description: Description is the description of the S3.
+                          type: string
+                        bucketName:
+                          description: BucketName is the bucket name of the S3.
+                          type: string
+                        bucketPolicy:
+                          description: BucketPolicy is the policy of the S3.
+                          type: string
+                        bucketPolicyAttachment:
+                          description: BucketPolicyAttachment is the policy attachment
+                            of the S3.
+                          type: string
+                        bucketNotification:
+                          description: BucketNotification is the notification of the
+                            S3.
+                          type: string
+                        bucketNotificationLambdaPermission:
+                          description: BucketNotificationLambdaPermission is the permission
+                            of the S3.
+                          type: string
+                        bucketNotificationLambdaPermissionAttachment:
+                          description: BucketNotificationLambdaPermissionAttachment
+                            is the permission attachment of the S3.
+                          type: string
+                        bucketNotificationLambda:
+                          description: BucketNotificationLambda is the Lambda of the
+                            S3.
+                          type: string
+                        bucketNotificationLambdaAttachment:
+                          description: BucketNotificationLambdaAttachment is the Lambda
+                            attachment of the S3.
+                          type: string
+              required:
+                - resourceConfig
+            status:
+              properties:
+                apiGatewayARN:
+                  description: APIGatewayARN is the ARN of the API Gateway.
+                  type: string
+                lambdaARN:
+                  description: LambdaARN is the ARN of the Lambda.
+                  type: string
+                s3ARN:
+                  description: S3ARN is the ARN of the S3.
+                  type: string
+          type: object

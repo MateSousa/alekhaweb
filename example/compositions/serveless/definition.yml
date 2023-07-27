@@ -30,6 +30,7 @@ spec:
                     apiGateway:
                       description: APIGateway is the API Gateway configuration for
                         the serverless app.
+                      type: object
                       properties:
                         region: 
                           description: Region is the region of the API Gateway.
@@ -56,6 +57,7 @@ spec:
                           type: array
                           items:
                             description: Model is the model of the API Gateway.
+                            type: object
                             properties:
                               name:
                                 description: Name is the name of the model.
@@ -74,6 +76,7 @@ spec:
                     lambda:
                       description: Lambda is the Lambda configuration for the serverless
                         app.
+                      type: object
                       properties:
                         region: 
                           description: Region is the region of the Lambda.
@@ -119,6 +122,7 @@ spec:
                           type: string
                     s3:
                       description: S3 is the S3 configuration for the serverless app.
+                      type: object
                       properties:
                         locationConstraint:
                           description: LocationConstraint is the location constraint

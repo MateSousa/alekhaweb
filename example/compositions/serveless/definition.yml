@@ -25,6 +25,7 @@ spec:
                 resourceConfig:
                   description: ResourceConfig is the resource configuration for the
                     serverless app.
+                  type: object
                   properties:
                     apiGateway:
                       description: APIGateway is the API Gateway configuration for

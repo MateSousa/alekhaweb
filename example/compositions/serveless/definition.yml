@@ -112,6 +112,10 @@ spec:
                     s3:
                       description: S3 is the S3 configuration for the serverless app.
                       properties:
+                        locationConstraint:
+                          description: LocationConstraint is the location constraint
+                            of the S3.
+                          type: string
                         name:
                           description: Name is the name of the S3.
                           type: string
@@ -121,33 +125,7 @@ spec:
                         bucketName:
                           description: BucketName is the bucket name of the S3.
                           type: string
-                        bucketPolicy:
-                          description: BucketPolicy is the policy of the S3.
-                          type: string
-                        bucketPolicyAttachment:
-                          description: BucketPolicyAttachment is the policy attachment
-                            of the S3.
-                          type: string
-                        bucketNotification:
-                          description: BucketNotification is the notification of the
-                            S3.
-                          type: string
-                        bucketNotificationLambdaPermission:
-                          description: BucketNotificationLambdaPermission is the permission
-                            of the S3.
-                          type: string
-                        bucketNotificationLambdaPermissionAttachment:
-                          description: BucketNotificationLambdaPermissionAttachment
-                            is the permission attachment of the S3.
-                          type: string
-                        bucketNotificationLambda:
-                          description: BucketNotificationLambda is the Lambda of the
-                            S3.
-                          type: string
-                        bucketNotificationLambdaAttachment:
-                          description: BucketNotificationLambdaAttachment is the Lambda
-                            attachment of the S3.
-                          type: string
+                         
               required:
                 - resourceConfig
             status:
